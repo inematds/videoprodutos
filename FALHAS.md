@@ -12,3 +12,4 @@
 | 2026-09-14 | uma cena falhou no ffmpeg/nvenc sem mensagem (transitório; o mesmo comando passou isolado) | wrapper `run()` com retry e fallback automático para libx264 | infra |
 | 2026-09-14 | poll de status da Agnes com `task_id` devolve status vazio para sempre (só `video_id` funciona) | usar `video_id` primeiro (`j.video_id \|\| j.task_id \|\| j.id`) + teto de 12 min no poll | prompt |
 | 2026-09-14 | clipe Agnes com prompt "dynamic push-in" exagera o zoom e reinventa o produto (cabeça recortada virou cachorro inteiro) | prompts de câmera suaves ("gentle, small movement, product unchanged") + negative_prompt | prompt |
+| 2026-09-14 | clipe Agnes por imagem única reinventa rótulo/embalagem (medido: "Colbpop Cluúp") | modo keyframes A→A (mesma foto no início e no fim) — produto fica exato, só a câmera move | prompt |

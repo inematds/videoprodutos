@@ -1,0 +1,6 @@
+# videoprodutos
+.venv/
+node_modules/
+data/
+.env
+_work/

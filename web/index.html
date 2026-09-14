@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>videoprodutos</title>
+<style>
+:root{--bg:#0d0b09;--bg2:#15120e;--card:#1c1813;--line:#2b251d;--amb:#f2b03c;--amb2:#ffcf6b;--tx:#f3ede2;--mut:#a89f8f;--ok:#5ad38a;--err:#ff6b6b;--warn:#ffb454;--r:14px}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--amb)}h1,h2,h3{margin:0 0 .5rem;font-weight:800;letter-spacing:-.01em}h2{font-size:1.25rem}h3{font-size:1rem}
+header{position:sticky;top:0;z-index:5;background:rgba(13,11,9,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.logo{font-weight:900;font-size:1.05rem;letter-spacing:.02em}.logo b{color:var(--amb)}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}nav button{background:none;border:0;color:var(--mut);padding:8px 12px;border-radius:9px;cursor:pointer;font-weight:600}nav button.on{background:var(--card);color:var(--amb)}
+main{padding:22px 0 60px}section{display:none}section.on{display:block}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}@media(max-width:800px){.g2,.g3{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+label{display:block;font-size:.8rem;color:var(--mut);margin:10px 0 4px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+input,select,textarea{width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:10px 12px;font:inherit}textarea{min-height:110px;font-family:ui-monospace,monospace;font-size:.85rem}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--amb);outline-offset:0;border-color:transparent}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.row>.fix{flex:0 0 auto}
+button.b{background:var(--amb);color:#1a1207;border:0;border-radius:10px;padding:11px 18px;font-weight:800;cursor:pointer;font:inherit;font-weight:800}button.b:hover{background:var(--amb2)}button.b.sec{background:var(--bg2);color:var(--tx);border:1px solid var(--line)}button.b.sm{padding:6px 10px;font-size:.8rem}button.b.danger{background:#3a1d1d;color:var(--err);border:1px solid #5a2a2a}
+.hint{color:var(--mut);font-size:.82rem}.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.72rem;font-weight:700;background:var(--bg2);border:1px solid var(--line);color:var(--mut)}
+.pill:empty{display:none}.pill.ok{color:var(--ok);border-color:#254a34}.pill.err{color:var(--err);border-color:#5a2a2a}.pill.run{color:var(--amb);border-color:#5a4520}.pill.warn{color:var(--warn)}
+.chk{display:flex;gap:14px;flex-wrap:wrap}.chk label{display:flex;align-items:center;gap:6px;text-transform:none;font-size:.9rem;color:var(--tx);margin:0}.chk input{width:auto}
+.job{display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px 0;border-top:1px solid var(--line)}.job:first-child{border-top:0}
+.bar{height:6px;background:var(--bg2);border-radius:99px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--amb),var(--amb2));transition:width .4s}
+.log{font-family:ui-monospace,monospace;font-size:.75rem;color:var(--mut);white-space:pre-wrap;max-height:130px;overflow:auto;background:var(--bg2);border-radius:8px;padding:8px;margin-top:6px}
+.proj{cursor:pointer;overflow:hidden;padding:0}.proj img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--bg2)}.proj .p{padding:12px 14px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.thumbs figure{margin:0}.thumbs img{width:100%;border-radius:8px;display:block;background:#000}.thumbs figcaption{font-size:.72rem;color:var(--mut);margin-top:3px}
+video{width:100%;border-radius:10px;background:#000;max-height:520px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;z-index:10;overflow:auto;padding:30px 16px}.modal.on{display:block}.modal .card{max-width:1100px;margin:0 auto}
+.stat{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.tabs button{background:var(--bg2);border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit;font-size:.85rem}.tabs button.on{color:var(--amb);border-color:var(--amb)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--amb);padding:10px 16px;border-radius:10px;display:none;z-index:20}
+.fs{max-height:220px;overflow:auto;background:var(--bg2);border-radius:8px;padding:6px;font-size:.85rem}.fs div{padding:4px 8px;cursor:pointer;border-radius:6px}.fs div:hover{background:var(--card)}
+kbd{background:var(--bg2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;font-size:.8rem}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="logo">🎬 video<b>produtos</b></div>
+<nav><button data-s="nova" class="on">Nova tarefa</button><button data-s="fila">Fila <span id="nfila" class="pill"></span></button><button data-s="projetos">Projetos</button><button data-s="config">Configurações</button><button data-s="ajuda">Ajuda</button></nav></div></header>
+<main class="wrap">
+
+<section id="s-nova" class="on">
+  <div class="grid g2">
+    <div class="card">
+      <h2>Fonte dos produtos</h2>
+      <p class="hint">Uma <b>pasta</b> (cada subpasta = um produto com fotos + <code>produto.json/md</code> opcional; ou fotos soltas = um produto por foto) ou a <b>URL</b> de uma loja/página (Shopify, WooCommerce, JSON-LD, OpenGraph ou imagens da página).</p>
+      <label>Pasta ou URL</label>
+      <div class="row"><input id="src" placeholder="/home/eu/produtos  ou  https://loja.com.br"><button class="b sec fix" id="browse">📁 Procurar</button></div>
+      <div id="fsbox" class="fs" style="display:none;margin-top:8px"></div>
+      <div class="row">
+        <div><label>Preset de imagem</label><select id="preset"></select><div class="hint" id="presetDesc"></div></div>
+        <div><label>Estilo do vídeo</label><select id="style"></select><div class="hint" id="styleDesc"></div></div>
+      </div>
+      <label>Presets extras (gera imagens também nestes)</label>
+      <div class="chk" id="extras"></div>
+      <label>Formatos de vídeo</label>
+      <div class="chk"><label><input type="checkbox" id="fw" checked> 16:9 (YouTube)</label><label><input type="checkbox" id="ft" checked> 9:16 (Reels/TikTok)</label><label><input type="checkbox" id="novideo"> só imagens (sem vídeo)</label></div>
+      <div class="row"><div><label>Marca / assinatura</label><input id="brand" placeholder="ex.: MINHA LOJA"></div><div><label>Máx. de produtos</label><input id="max" type="number" min="1" placeholder="todos"></div></div>
+      <div style="margin-top:16px" class="row"><button class="b" id="add">➕ Adicionar à fila</button></div>
+    </div>
+    <div class="card">
+      <h2>Lote (várias tarefas)</h2>
+      <p class="hint">Uma fonte por linha. Campos opcionais separados por <kbd>|</kbd>: preset, estilo, formato (<code>16:9</code>, <code>9:16</code>, <code>ambos</code>), <code>max=N</code>, <code>marca=Nome</code>, <code>sem-video</code>. Linhas com <kbd>#</kbd> são ignoradas.</p>
+      <textarea id="batch" placeholder="/home/eu/produtos/cafes | quente-vintage | natural
+https://minhaloja.com.br | auto | promo | 9:16 | max=5
+/home/eu/produtos/fones | dark-premium | tech | ambos | marca=SOUNDX"></textarea>
+      <div style="margin-top:12px" class="row"><button class="b" id="addBatch">➕ Enfileirar lote</button></div>
+      <h3 style="margin-top:22px">Serviços</h3>
+      <div class="stat" id="health"><span class="pill">verificando…</span></div>
+      <p class="hint">Tudo roda local e sem custo. LLM e imagem por IA são opcionais — veja Configurações.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s-fila"><div class="card"><div class="row"><h2 style="margin:0">Fila de produção</h2><span class="fix"><button class="b sec sm" id="clear">Limpar concluídos</button></span></div><div id="jobs"></div></div></section>
+
+<section id="s-projetos"><div class="row" style="margin-bottom:12px"><h2 style="margin:0">Projetos gerados</h2><span class="hint fix" id="outdir"></span></div><div class="grid g3" id="projects"></div></section>
+
+<section id="s-config"><div class="card"><h2>Configurações</h2><p class="hint">Salvas em <code>.env</code> na pasta do projeto (chaves ficam só no seu disco). Defaults = tudo local e grátis. Deixe em branco para voltar ao padrão.</p><form id="cfgForm"></form><div class="row" style="margin-top:14px"><button class="b" id="saveCfg">💾 Salvar</button></div></div></section>
+
+<section id="s-ajuda"><div class="card">
+<h2>Como funciona</h2>
+<ol>
+<li><b>Busca</b> os produtos na pasta ou na URL (baixa fotos, nome, descrição e preço quando existem).</li>
+<li><b>Classifica</b> o produto (tecnologia, moda, alimento, casa…) e escreve o copy (título, 3 benefícios, CTA) — com LLM local (Ollama) ou por template.</li>
+<li><b>Imagens</b>: recorta o fundo (rembg local) e recompõe no preset escolhido — ou automático pela categoria — em 1:1, 16:9 e 9:16, versões limpa e com texto/preço.</li>
+<li><b>Vídeo</b>: intro → benefícios → oferta/CTA, com zoom, transições, grade de cor por estilo, música CC0 (Freesound via inemavox) e narração opcional. Sai 16:9 e 9:16 + um catálogo com todos os produtos.</li>
+<li>Tudo é salvo em <code>&lt;saída&gt;/&lt;projeto&gt;/</code> com <code>projeto.json</code>.</li>
+</ol>
+<h3>Formato da pasta</h3>
+<pre>produtos/
+  fone-x1/            ← um produto
+    1.jpg 2.jpg
+    produto.json      ← {"name":"Fone X1","price":"R$ 199","desc":"...","category":"tecnologia"}
+  caneca-azul/
+    foto.png
+    produto.md        ← 1ª linha = nome, resto = descrição
+  camiseta.jpg        ← fotos soltas: um produto cada</pre>
+<h3>CLI</h3>
+<pre>node cli.js ~/produtos --preset dark-premium --estilo tech
+node cli.js https://loja.com.br --max 5 --formato 9:16
+node cli.js --lote lista.txt</pre>
+</div></section>
+</main>
+
+<div class="modal" id="modal"><div class="card"><div class="row"><h2 id="mTitle" style="margin:0"></h2><span class="fix"><button class="b sec sm" id="mDel">🗑 Apagar</button> <button class="b sec sm" id="mClose">✕ Fechar</button></span></div><div id="mBody"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const api=(u,o)=>fetch(u,o?{headers:{'content-type':'application/json'},...o,body:o.body?JSON.stringify(o.body):undefined}:undefined).then(r=>r.json());
+const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2600)};
+let META={};
+$$('nav button').forEach(b=>b.onclick=()=>{$$('nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$$('section').forEach(s=>s.classList.remove('on'));$('#s-'+b.dataset.s).classList.add('on');if(b.dataset.s==='projetos')loadProjects();if(b.dataset.s==='config')loadConfig();});
+
+async function init(){
+  META=await api('/api/meta');
+  const ps=$('#preset'),ss=$('#style');
+  ps.innerHTML='<option value="auto">Automático (pela categoria)</option>'+Object.entries(META.presets).map(([k,v])=>`<option value="${k}">${v.label}${v.ai?' ✨':''}</option>`).join('');
+  ss.innerHTML='<option value="auto">Automático (pela categoria)</option>'+Object.entries(META.styles).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('');
+  $('#extras').innerHTML=Object.entries(META.presets).map(([k,v])=>`<label><input type="checkbox" value="${k}"> ${v.label}</label>`).join('');
+  const d=()=>{$('#presetDesc').textContent=META.presets[ps.value]?.desc||'Escolhe pelo tipo de produto detectado.';$('#styleDesc').textContent=META.styles[ss.value]?.desc||'Escolhe pelo tipo de produto detectado.'};ps.onchange=ss.onchange=d;d();
+  $('#outdir').textContent=META.outputDir;
+  loadQueue();health();
+  const es=new EventSource('/api/events');es.addEventListener('change',loadQueue);es.addEventListener('log',e=>{const {id,line}=JSON.parse(e.data);const el=document.getElementById('log-'+id);if(el){el.textContent+=line+'\n';el.scrollTop=el.scrollHeight}});
+}
+async function health(){const h=await api('/api/health');const p=(n,v,lbl)=>v===null?'':`<span class="pill ${v?'ok':'err'}">${n}: ${lbl||(v?'ok':'off')}</span>`;
+  $('#health').innerHTML=p('LLM '+h.llm,h.llm==='none'?true:(h.llm==='ollama'?h.ollama:true),h.llm==='none'?'templates':undefined)+p('Imagem IA '+h.img,h.img==='none'?true:(h.img==='inemaimg'?h.inemaimg:true),h.img==='none'?'só presets':undefined)+p('inemavox (música/voz)',h.inemavox)+p('rembg',h.rembg)+`<span class="pill">TTS: ${h.tts}</span><span class="pill">música: ${h.music}</span>`;}
+
+function opts(){const f=[];if($('#fw').checked)f.push('wide');if($('#ft').checked)f.push('tall');return {preset:$('#preset').value,style:$('#style').value,formats:f,extraPresets:$$('#extras input:checked').map(i=>i.value),video:!$('#novideo').checked,brand:$('#brand').value||undefined,max:$('#max').value?parseInt($('#max').value):undefined};}
+$('#add').onclick=async()=>{const source=$('#src').value.trim();if(!source)return toast('Informe uma pasta ou URL');const r=await api('/api/queue',{method:'POST',body:{source,options:opts()}});if(r.error)return toast(r.error);toast('Adicionado à fila');$$('nav button')[1].click();};
+$('#addBatch').onclick=async()=>{const batch=$('#batch').value.trim();if(!batch)return toast('Cole as linhas do lote');const o=opts();delete o.preset;delete o.style;delete o.formats;const r=await api('/api/queue',{method:'POST',body:{batch,options:o}});if(r.error)return toast(r.error);toast(`${r.length} tarefa(s) enfileirada(s)`);$$('nav button')[1].click();};
+$('#clear').onclick=async()=>{await api('/api/queue/clear',{method:'POST',body:{}});loadQueue()};
+
+// navegador de pastas
+$('#browse').onclick=()=>{const b=$('#fsbox');b.style.display=b.style.display==='none'?'block':'none';if(b.style.display==='block')browse($('#src').value.startsWith('/')?$('#src').value:'~');};
+async function browse(p){const r=await api('/api/fs?path='+encodeURIComponent(p));if(r.error)return toast(r.error);$('#src').value=r.path;$('#fsbox').innerHTML=`<div onclick="browse('${r.parent}')">⬆ ..</div>`+r.dirs.map(d=>`<div onclick="browse('${(r.path+'/'+d).replace(/\/\//,'/')}')">📁 ${d}</div>`).join('')+`<div class="hint">${r.images} imagem(ns) nesta pasta</div>`;}
+
+const pillFor=s=>({'na fila':'','rodando':'run','concluído':'ok','erro':'err','cancelado':'warn'}[s]||'');
+async function loadQueue(){const jobs=await api('/api/queue');$('#nfila').textContent=jobs.filter(j=>['na fila','rodando'].includes(j.status)).length||'';
+  $('#jobs').innerHTML=jobs.length?jobs.map(j=>`<div class="job"><div><b>${j.name}</b> <span class="pill ${pillFor(j.status)}">${j.status}</span> <span class="hint">${j.source}</span>
+    <div class="hint">preset: ${j.options.preset||'auto'} · estilo: ${j.options.style||'auto'} · ${(j.options.formats||['wide','tall']).map(f=>f==='wide'?'16:9':'9:16').join(' + ')}${j.options.video===false?' · sem vídeo':''}</div>
+    ${j.status==='rodando'?`<div class="bar"><i style="width:${j.progress}%"></i></div><div class="hint">${j.progress}% — ${j.step}</div>`:''}
+    ${j.error?`<div class="hint" style="color:var(--err)">${j.error}</div>`:''}
+    <div class="log" id="log-${j.id}">${j.log.join('\n')}</div></div>
+    <div class="row" style="flex-direction:column;align-items:stretch">${j.status==='concluído'?`<button class="b sm" onclick="openProject('${j.id}')">Ver projeto</button>`:''}${['na fila','rodando'].includes(j.status)?`<button class="b sec sm" onclick="act('${j.id}','cancel')">Cancelar</button>`:''}${['erro','cancelado'].includes(j.status)?`<button class="b sec sm" onclick="act('${j.id}','retry')">Tentar de novo</button>`:''}${j.status!=='rodando'?`<button class="b danger sm" onclick="act('${j.id}','delete')">Remover</button>`:''}</div></div>`).join(''):'<p class="hint">Fila vazia. Adicione uma tarefa.</p>';}
+async function act(id,a){if(a==='delete'){await fetch('/api/queue/'+id,{method:'DELETE'})}else await api(`/api/queue/${id}/${a}`,{method:'POST',body:{}});loadQueue();}
+
+async function loadProjects(){const ps=await api('/api/projects');$('#projects').innerHTML=ps.length?ps.map(p=>`<div class="card proj" onclick="openProject('${p.id}')"><img src="${p.thumb||''}" alt=""><div class="p"><b>${p.name}</b><div class="hint">${p.products} produto(s) · ${new Date(p.createdAt).toLocaleString('pt-BR')}</div></div></div>`).join(''):'<p class="hint">Nenhum projeto ainda.</p>';}
+let cur=null;
+async function openProject(id){const m=await api('/api/projects/'+id);if(m.error)return toast('Projeto ainda não salvo');cur=id;$('#mTitle').textContent=m.name;
+  const fmtName={square:'1:1',wide:'16:9',tall:'9:16'};
+  $('#mBody').innerHTML=`<div class="hint">${m.source} · ${m.dir}</div>`+(m.compilation&&Object.keys(m.compilation).length?`<h3 style="margin-top:14px">Catálogo (todos os produtos)</h3><div class="grid g2">${Object.entries(m.compilation).map(([f,u])=>`<div><video controls preload="metadata" src="${u}"></video><div class="hint">${fmtName[f]} · <a href="${u}" download>baixar</a></div></div>`).join('')}</div>`:'')+
+  m.products.map(p=>`<div style="margin-top:22px;border-top:1px solid var(--line);padding-top:14px"><h3>${p.name} <span class="pill">${p.category}</span> <span class="pill">${p.preset}</span> <span class="pill">${p.style}</span>${p.price?` <span class="pill ok">${p.price}</span>`:''}</h3>
+    <div class="hint">“${p.copy.headline}” — ${p.copy.tagline} · ${p.copy.benefits.join(' · ')} · CTA: ${p.copy.cta}${p.copy.llm?' · ✨ LLM':' · template'}</div>
+    ${p.video?`<div class="grid g2" style="margin-top:10px">${Object.entries(p.video.formats).map(([f,v])=>`<div><video controls preload="metadata" poster="${v.poster}" src="${v.file}"></video><div class="hint">${fmtName[f]} · ${v.seconds}s · <a href="${v.file}" download>baixar</a></div></div>`).join('')}</div><div class="hint">música: ${p.video.music?.name||'—'}${p.video.music?.author?' ('+p.video.music.author+', CC0)':''} · narração: ${p.video.voice?'sim':'não'} · encoder: ${p.video.encoder}</div>`:''}
+    ${Object.entries(p.images).map(([pr,im])=>`<div style="margin-top:10px"><b class="hint">Imagens — ${META.presets[pr]?.label||pr}</b><div class="thumbs" style="margin-top:6px">${['square','wide','tall'].map(f=>`<figure><a href="${im.post[f]}" target="_blank"><img src="${im.post[f]}"></a><figcaption>${fmtName[f]} com texto</figcaption></figure><figure><a href="${im.clean[f]}" target="_blank"><img src="${im.clean[f]}"></a><figcaption>${fmtName[f]} limpa</figcaption></figure>`).join('')}</div></div>`).join('')}
+    <div style="margin-top:8px"><b class="hint">Originais</b><div class="thumbs" style="margin-top:6px">${p.originals.map(o=>`<figure><img src="${o}"></figure>`).join('')}</div></div></div>`).join('');
+  $('#modal').classList.add('on');}
+$('#mClose').onclick=()=>$('#modal').classList.remove('on');
+$('#mDel').onclick=async()=>{if(!confirm('Apagar este projeto do disco?'))return;await fetch('/api/projects/'+cur,{method:'DELETE'});$('#modal').classList.remove('on');loadProjects();loadQueue();};
+
+async function loadConfig(){const {schema,values}=await api('/api/config');const groups={geral:'Geral',llm:'LLM (copy e classificação) — opcional',img:'Imagem por IA (cenários) — opcional',audio:'Áudio (inemavox local)',render:'Render'};
+  $('#cfgForm').innerHTML=Object.entries(groups).map(([g,t])=>`<h3 style="margin-top:18px">${t}</h3><div class="grid g2">${schema.filter(s=>s.group===g).map(s=>`<div><label>${s.label}</label>${s.type==='select'?`<select name="${s.key}">${s.options.map(o=>`<option ${values[s.key]===o?'selected':''}>${o}</option>`).join('')}</select>`:`<input name="${s.key}" type="${s.type==='password'?'password':'text'}" value="${(values[s.key]||'').replace(/"/g,'&quot;')}" placeholder="${(s.def||'').replace(/"/g,'&quot;')}">`}${s.help?`<div class="hint">${s.help}</div>`:''}</div>`).join('')}</div>`).join('');}
+$('#saveCfg').onclick=async()=>{const body={};new FormData($('#cfgForm')).forEach((v,k)=>body[k]=v);await api('/api/config',{method:'POST',body});toast('Configurações salvas');health();};
+init();
+</script>
+</body>
+</html>

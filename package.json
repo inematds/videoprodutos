@@ -1,0 +1,20 @@
+{
+  "name": "videoprodutos",
+  "version": "1.0.0",
+  "description": "Pasta ou link de loja → imagens por preset → vídeo promocional automático, com fila e página web. 100% local.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "cli": "node cli.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "express": "^5.2.1",
+    "sharp": "^0.35.4"
+  }
+}

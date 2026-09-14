@@ -17,8 +17,9 @@ const jobs = [];
 if (get('--lote')) {
   for (const line of fs.readFileSync(get('--lote'), 'utf8').split(/\r?\n/)) { const j = newJobFromLine(line.trim()); if (j && !line.trim().startsWith('#')) jobs.push(j); }
 } else {
-  const fmt = get('--formato', 'ambos');
-  jobs.push({ source: args[0], options: { preset: get('--preset', 'auto'), style: get('--estilo', 'auto'), formats: fmt === 'ambos' ? ['wide', 'tall'] : [fmt], max: get('--max') ? parseInt(get('--max'), 10) : undefined, video: !args.includes('--sem-video'), brand: get('--marca') } });
+  const fmt = String(get('--formato', 'ambos')).toLowerCase();
+  const formats = /^(16:9|wide|horizontal)$/.test(fmt) ? ['wide'] : /^(9:16|tall|vertical|reels)$/.test(fmt) ? ['tall'] : ['wide', 'tall'];
+  jobs.push({ source: args[0], options: { preset: get('--preset', 'auto'), style: get('--estilo', 'auto'), formats, max: get('--max') ? parseInt(get('--max'), 10) : undefined, video: !args.includes('--sem-video'), brand: get('--marca') } });
 }
 for (const j of jobs) {
   const job = { id: makeId(j.source), name: nameFor(j.source), source: j.source, options: j.options, log: [] };

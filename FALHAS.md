@@ -10,3 +10,5 @@
 | 2026-09-14 | música do Freesound nunca era usada: inemavox devolve `path` relativo à pasta dele, `fs.existsSync` falhava em silêncio | resolver contra `~/projetos/inemavox` e, se não achar, baixar via `/api/audio/file` | infra |
 | 2026-09-14 | LLM gerou headline negativa ("Sofrimento Sonoro Extremo") | regra de tom positivo + lista de palavras proibidas + exemplos no prompt | prompt |
 | 2026-09-14 | uma cena falhou no ffmpeg/nvenc sem mensagem (transitório; o mesmo comando passou isolado) | wrapper `run()` com retry e fallback automático para libx264 | infra |
+| 2026-09-14 | poll de status da Agnes com `task_id` devolve status vazio para sempre (só `video_id` funciona) | usar `video_id` primeiro (`j.video_id \|\| j.task_id \|\| j.id`) + teto de 12 min no poll | prompt |
+| 2026-09-14 | clipe Agnes com prompt "dynamic push-in" exagera o zoom e reinventa o produto (cabeça recortada virou cachorro inteiro) | prompts de câmera suaves ("gentle, small movement, product unchanged") + negative_prompt | prompt |

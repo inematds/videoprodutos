@@ -55,10 +55,33 @@ Tela **Configurações** na UI ou `.env` na raiz (veja `.env.example`). Defaults
 para copy, inemaimg (`flux2-klein`) para cenário por IA, inemavox para música/TTS. Qualquer um pode
 ser desligado (`none`) ou trocado por uma API OpenAI-compatível / Agnes — nada é obrigatório.
 
+## Motor de vídeo por IA (opcional, plugável)
+
+`VIDEO_ENGINE=ffmpeg` (default) faz zoom/pan local. `VIDEO_ENGINE=agnes` gera clipes de câmera reais
+a partir das imagens do produto pela API Agnes (`agnes-video-v2.0`, US$ 0, 720p, ~1 min por cena,
+limite de 5 req/min) — as primeiras `AI_SCENES` cenas de cada produto vão pela IA e o resto fica no
+ffmpeg; se a API falhar, a cena cai no ffmpeg sozinha. Outros motores (kie.ai etc.) entram em
+`lib/videoai.js` implementando `generateClip()`.
+
+## Deploy numa VPS (sem GPU)
+
+Perfil testado: Ubuntu, 2 vCPU, 4 GB. Copy, cenário e vídeo pela Agnes; narração por `edge-tts`;
+recorte por rembg em CPU; render libx264. Senha HTTP Basic na frente (`APP_PASSWORD`).
+
+```bash
+ssh root@VPS
+git clone https://github.com/inematds/videoprodutos /root/projetos/videoprodutos
+cd /root/projetos/videoprodutos && bash deploy/deploy.sh   # deps, venv, fontes, systemd
+nano .env                                                  # AGNES_API_KEY e APP_PASSWORD (modelo: deploy/env.vps.example)
+systemctl restart videoprodutos                            # → http://IP:3080
+```
+
+Atualizar depois: `cd /root/projetos/videoprodutos && bash deploy/deploy.sh`.
+
 ## Saída
 
 `~/projetos/output/videoprodutos/<id>/` com `projeto.json`, `originais/`, `imagens/<preset>/`, `videos/`.
 
 ## Stack
 
-Node 20+, Express, sharp, cheerio, ffmpeg (h264_nvenc ou libx264), Python + rembg. Sem serviços pagos.
+Node 20+, Express, sharp, cheerio, ffmpeg (h264_nvenc ou libx264), Python + rembg, edge-tts. Sem serviços pagos (Agnes é US$ 0).

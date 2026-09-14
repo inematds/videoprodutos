@@ -261,7 +261,18 @@
 <span class="k">OLLAMA_MODEL</span>=qwen3.8:27b
 <span class="k">IMG_PROVIDER</span>=inemaimg        <span class="c"># none | inemaimg (flux2-klein local) | agnes (US$ 0) | openai</span>
 <span class="k">TTS_ENGINE</span>=edge              <span class="c"># none | edge | chatterbox   (via inemavox)</span>
-<span class="k">MUSIC</span>=freesound              <span class="c"># none | freesound | synth</span></pre>
+<span class="k">MUSIC</span>=freesound              <span class="c"># none | freesound | freesound-api | synth</span>
+<span class="k">VIDEO_ENGINE</span>=ffmpeg           <span class="c"># ffmpeg (local) | agnes (clipes de câmera por IA, US$ 0) | kie (reservado)</span>
+<span class="k">APP_PASSWORD</span>=                 <span class="c"># senha HTTP Basic — obrigatória numa VPS</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">☁</div><div>
+    <h3>Rodar numa VPS sem GPU</h3>
+    <p>Perfil pronto em <code>deploy/</code>: Agnes para copy, cenário e vídeo, edge-tts para a voz, rembg em CPU, libx264 no render, senha na frente. Testado em 2 vCPU / 4 GB.</p>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/videoprodutos</span> /root/projetos/videoprodutos
+<span class="k">cd</span> /root/projetos/videoprodutos && <span class="k">bash</span> deploy/deploy.sh   <span class="c"># deps, venv, fontes, systemd</span>
+<span class="k">nano</span> .env        <span class="c"># AGNES_API_KEY e APP_PASSWORD (modelo em deploy/env.vps.example)</span>
+<span class="k">systemctl restart</span> videoprodutos                    <span class="c"># → http://IP:3080</span></pre>
   </div></div>
 </div></section>
 
@@ -282,8 +293,9 @@
   <h2>Onde isso vai</h2>
   <p class="sub">O núcleo (descoberta → imagens → vídeo → fila) está pronto. O que falta é refinamento e integração.</p>
   <div class="phase"><div class="tag">v1.0</div><div class="d"><strong>Núcleo local</strong><span>Pasta/URL, 9 presets, 6 estilos, automático por categoria, fila persistente, página web, CLI, configuração de LLM/imagem opcional.</span></div></div>
-  <div class="phase"><div class="tag">v1.1</div><div class="d"><strong>Edição de copy antes do render</strong><span>Revisar título, benefícios e preço na fila antes de gerar o vídeo; re-render só do vídeo.</span></div></div>
-  <div class="phase"><div class="tag">v1.2</div><div class="d"><strong>Legendas e locução clonada</strong><span>Legendas queimadas sincronizadas com a narração; voz clonada (chatterbox/rachel) como opção padrão quando a GPU estiver livre.</span></div></div>
+  <div class="phase"><div class="tag">v1.1</div><div class="d"><strong>Motor de vídeo por IA + VPS</strong><span>Clipes de câmera pela Agnes (plugável: kie e outros em <code>lib/videoai.js</code>), perfil de deploy sem GPU com senha, edge-tts e Freesound diretos.</span></div></div>
+  <div class="phase"><div class="tag">v1.2</div><div class="d"><strong>Edição de copy antes do render</strong><span>Revisar título, benefícios e preço na fila antes de gerar o vídeo; re-render só do vídeo.</span></div></div>
+  <div class="phase"><div class="tag">v1.3</div><div class="d"><strong>Legendas e locução clonada</strong><span>Legendas queimadas sincronizadas com a narração; voz clonada (chatterbox/rachel) como opção padrão quando a GPU estiver livre.</span></div></div>
   <div class="phase"><div class="tag">v2</div><div class="d"><strong>Export HyperFrames e publicação</strong><span>Composição HTML editável para quem quer mexer no motion, e envio direto para Metricool/agenda de posts.</span></div></div>
 </div></section>
 

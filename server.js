@@ -12,6 +12,14 @@ ensureDirs();
 const cfg = loadConfig();
 const app = express();
 const queue = new Queue();
+// senha opcional (APP_PASSWORD) — HTTP Basic, obrigatória quando exposto na internet
+app.use((req, res, next) => {
+  const pw = loadConfig().APP_PASSWORD; if (!pw) return next();
+  const h = req.headers.authorization || '';
+  const given = h.startsWith('Basic ') ? Buffer.from(h.slice(6), 'base64').toString().split(':').slice(1).join(':') : '';
+  if (given === pw) return next();
+  res.set('WWW-Authenticate', 'Basic realm="videoprodutos"').status(401).send('senha necessária');
+});
 app.use(express.json({ limit: '2mb' }));
 app.use(express.static(path.join(ROOT, 'web')));
 
@@ -90,6 +98,7 @@ app.get('/api/health', async (req, res) => {
     inemaimg: c.IMG_PROVIDER === 'inemaimg' ? await probe(`${c.INEMAIMG_URL}/health`) : null,
     inemavox: await probe(`${c.INEMAVOX_URL}/api/system/status`),
     rembg: fs.existsSync(c.PYTHON),
+    engine: c.VIDEO_ENGINE, agnesKey: !!c.AGNES_API_KEY,
     llm: c.LLM_PROVIDER, img: c.IMG_PROVIDER, tts: c.TTS_ENGINE, music: c.MUSIC,
   });
 });

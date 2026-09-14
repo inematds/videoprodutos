@@ -1,0 +1,18 @@
+[Unit]
+Description=videoprodutos — imagens e vídeo promocional de produtos (fila web)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/projetos/videoprodutos
+Environment=NODE_ENV=production
+Environment=PATH=/root/projetos/videoprodutos/.venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=5
+Nice=10
+
+[Install]
+WantedBy=multi-user.target

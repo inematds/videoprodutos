@@ -1,6 +1,6 @@
 {
   "name": "videoprodutos",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Pasta ou link de loja → imagens por preset → vídeo promocional automático, com fila e página web. 100% local.",
   "main": "index.js",
   "scripts": {

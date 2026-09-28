@@ -1,5 +1,7 @@
 # videoprodutos
 
+**🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
+
 Pasta ou link de loja → produtos descobertos → imagens em presets de estilo → vídeo promocional
 automático (16:9 e 9:16) → projeto salvo, tudo por uma página web com **fila de produção**.
 Roda **100% local e sem custo** (ffmpeg + sharp + rembg). LLM e imagem por IA são **opcionais**.

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>videoprodutos — pasta ou link vira imagens e vídeo promocional</title>
-<meta name="description" content="videoprodutos: busca os produtos numa pasta ou link de loja, gera imagens em presets de estilo e um vídeo promocional automático (16:9 e 9:16), com fila de produção e página web. 100% local, sem API paga.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta content="videoprodutos: busca os produtos numa pasta ou link de loja, gera imagens em presets de estilo e um vídeo promocional automático (16:9 e 9:16), com fila de produção e página web. 100% local, sem API paga." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <style>
   :root{
     --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
@@ -95,127 +96,119 @@
   td:first-child{font-family:"JetBrains Mono",monospace;font-size:.84rem;white-space:nowrap}
   .tbl{overflow-x:auto}
 </style>
-</head>
-<body>
-
+<link href="https://inematds.github.io/videoprodutos/guia/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/videoprodutos/guia/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/videoprodutos/guia/es/" hreflang="es" rel="alternate"/></head>
+<body><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="./" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">PT</a><a href="en/" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="es/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
 <nav><div class="wrap">
-  <a class="brand" href="#top"><span class="emoji">🎬</span> videoprodutos</a>
-  <span class="sep">|</span>
-  <span class="clubpro">
-    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
-    <span class="sep">-</span>
-    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
-  </span>
-  <div class="links">
-    <a class="sec" href="#oque">O que é</a>
-    <a class="sec" href="#fluxo">Como funciona</a>
-    <a class="sec" href="#guia">Guia de uso</a>
-    <a class="sec" href="#exemplos">Exemplos</a>
-    <a class="sec" href="#roadmap">Roadmap</a>
-    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
-    <a class="btn" href="https://github.com/inematds/videoprodutos" target="_blank" rel="noopener">GitHub</a>
-  </div>
+<a class="brand" href="#top"><span class="emoji">🎬</span> videoprodutos</a>
+<span class="sep">|</span>
+<span class="clubpro">
+<a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a>
+<span class="sep">-</span>
+<a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a>
+</span>
+<div class="links">
+<a class="sec" href="#oque">O que é</a>
+<a class="sec" href="#fluxo">Como funciona</a>
+<a class="sec" href="#guia">Guia de uso</a>
+<a class="sec" href="#exemplos">Exemplos</a>
+<a class="sec" href="#roadmap">Roadmap</a>
+<button aria-label="Alternar tema" class="tgl" id="themeToggle" title="Alternar tema">🌙</button>
+<a class="btn" href="https://github.com/inematds/videoprodutos" rel="noopener" target="_blank">GitHub</a>
+</div>
 </div></nav>
-
 <header class="hero" id="top">
-  <div class="glow"></div>
-  <div class="wrap">
-    <div>
-      <span class="chip">Fábrica de imagens + vídeo de produto · 100% local</span>
-      <h1>Uma pasta ou um link vira <span class="amb">imagens e vídeo</span> promocional</h1>
-      <p class="lead">Aponte a pasta de fotos ou a URL da loja. O videoprodutos acha os produtos, recorta o fundo, aplica o preset de estilo (ou escolhe sozinho pelo tipo de produto) e renderiza o vídeo em 16:9 e 9:16 — numa fila, pela página web. Sem API paga, sem crédito.</p>
-      <div class="cta">
-        <a class="btn" href="#guia">Começar o guia</a>
-        <a class="btn ghost" href="https://github.com/inematds/videoprodutos" target="_blank" rel="noopener">Ver no GitHub</a>
-      </div>
-    </div>
-    <figure><img src="assets/hero.jpg" alt="Ilustração de produtos sendo transformados em imagens estilizadas e vídeo"></figure>
-  </div>
+<div class="glow"></div>
+<div class="wrap">
+<div>
+<span class="chip">Fábrica de imagens + vídeo de produto · 100% local</span>
+<h1>Uma pasta ou um link vira <span class="amb">imagens e vídeo</span> promocional</h1>
+<p class="lead">Aponte a pasta de fotos ou a URL da loja. O videoprodutos acha os produtos, recorta o fundo, aplica o preset de estilo (ou escolhe sozinho pelo tipo de produto) e renderiza o vídeo em 16:9 e 9:16 — numa fila, pela página web. Sem API paga, sem crédito.</p>
+<div class="cta">
+<a class="btn" href="#guia">Começar o guia</a>
+<a class="btn ghost" href="https://github.com/inematds/videoprodutos" rel="noopener" target="_blank">Ver no GitHub</a>
+</div>
+</div>
+<figure><img alt="Ilustração de produtos sendo transformados em imagens estilizadas e vídeo" src="assets/hero.jpg"/></figure>
+</div>
 </header>
-
 <section id="oque"><div class="wrap">
-  <span class="chip">O que é</span>
-  <h2>Do produto bruto ao anúncio pronto, em lote</h2>
-  <p class="sub">Um servidor Node com página web e fila persistente. Cada tarefa (pasta ou link) vira um projeto salvo em disco com originais, imagens por preset em três proporções e vídeos prontos para YouTube e Reels.</p>
-  <div class="grid g3">
-    <div class="card"><h3>🔎 Acha os produtos sozinho</h3><p>Pasta (subpasta = produto, ou fotos soltas) ou URL: Shopify, WooCommerce, JSON-LD, OpenGraph e, por último, as imagens grandes da página. Traz nome, descrição e preço quando existem.</p></div>
-    <div class="card"><h3>🎨 9 presets de imagem + automático</h3><p>Estúdio branco, dark premium, vibrante, minimal, quente/vintage, neon, natural, original e cenário por IA. Recorte de fundo com rembg local; saída 1:1, 16:9 e 9:16, limpa e com título/preço.</p></div>
-    <div class="card"><h3>🎬 6 estilos de vídeo + automático</h3><p>Dinâmico, elegante, tech, natural, promoção e cinemático: zoom/pan, transições, grade de cor, música CC0 (Freesound via inemavox) ou trilha sintética, narração opcional e um catálogo com todos os produtos.</p></div>
-  </div>
+<span class="chip">O que é</span>
+<h2>Do produto bruto ao anúncio pronto, em lote</h2>
+<p class="sub">Um servidor Node com página web e fila persistente. Cada tarefa (pasta ou link) vira um projeto salvo em disco com originais, imagens por preset em três proporções e vídeos prontos para YouTube e Reels.</p>
+<div class="grid g3">
+<div class="card"><h3>🔎 Acha os produtos sozinho</h3><p>Pasta (subpasta = produto, ou fotos soltas) ou URL: Shopify, WooCommerce, JSON-LD, OpenGraph e, por último, as imagens grandes da página. Traz nome, descrição e preço quando existem.</p></div>
+<div class="card"><h3>🎨 9 presets de imagem + automático</h3><p>Estúdio branco, dark premium, vibrante, minimal, quente/vintage, neon, natural, original e cenário por IA. Recorte de fundo com rembg local; saída 1:1, 16:9 e 9:16, limpa e com título/preço.</p></div>
+<div class="card"><h3>🎬 6 estilos de vídeo + automático</h3><p>Dinâmico, elegante, tech, natural, promoção e cinemático: zoom/pan, transições, grade de cor, música CC0 (Freesound via inemavox) ou trilha sintética, narração opcional e um catálogo com todos os produtos.</p></div>
+</div>
 </div></section>
-
 <section id="fluxo"><div class="wrap">
-  <span class="chip">Como funciona</span>
-  <h2>Linha de montagem por produto</h2>
-  <p class="sub">A categoria detectada (tecnologia, moda, alimento, casa, pet, joias…) decide o preset e o estilo quando você deixa em "automático". O copy (título, tagline, 3 benefícios, CTA) vem do Ollama local — ou de um template se não houver LLM.</p>
-  <div class="flow">
-    <span>Pasta / URL</span><span class="arr">→</span>
-    <span>Produtos + fotos</span><span class="arr">→</span>
-    <span>Categoria + copy</span><span class="arr">→</span>
-    <span>Recorte (rembg)</span><span class="arr">→</span>
-    <span>Imagens por preset</span><span class="arr">→</span>
-    <span>Cenas (zoompan + texto)</span><span class="arr">→</span>
-    <span>xfade + música + voz</span><span class="arr">→</span>
-    <span>MP4 16:9 + 9:16</span><span class="arr">→</span>
-    <span>projeto.json</span>
-  </div>
-  <div class="grid g2" style="margin-top:26px">
-    <div class="card"><h3>Presets de imagem</h3>
-      <div class="tbl"><table><tr><th>preset</th><th>quando usar</th></tr>
-      <tr><td>estudio-branco</td><td>e-commerce, cursos, livros</td></tr>
-      <tr><td>dark-premium</td><td>tecnologia, joias, automotivo</td></tr>
-      <tr><td>vibrante</td><td>esporte, infantil</td></tr>
-      <tr><td>minimal</td><td>moda, beleza</td></tr>
-      <tr><td>quente-vintage</td><td>alimentos e bebidas</td></tr>
-      <tr><td>neon</td><td>games</td></tr>
-      <tr><td>natural</td><td>casa, pet, eco</td></tr>
-      <tr><td>original</td><td>só corrige luz/cor e enquadra</td></tr>
-      <tr><td>cenario-ia</td><td>fundo fotográfico gerado (inemaimg / Agnes / API)</td></tr>
-      </table></div></div>
-    <div class="card"><h3>Estilos de vídeo</h3>
-      <div class="tbl"><table><tr><th>estilo</th><th>ritmo</th></tr>
-      <tr><td>dinamico</td><td>cortes de 2,2 s, punch zoom, slide</td></tr>
-      <tr><td>elegante</td><td>3,6 s por cena, fades longos</td></tr>
-      <tr><td>tech</td><td>grade azul/ciano, wipe, leve rgbashift</td></tr>
-      <tr><td>natural</td><td>quente, suave, violão</td></tr>
-      <tr><td>promo</td><td>preço em destaque, CTA forte</td></tr>
-      <tr><td>cinematico</td><td>vinheta, contraste, trilha épica</td></tr>
-      </table></div></div>
-  </div>
+<span class="chip">Como funciona</span>
+<h2>Linha de montagem por produto</h2>
+<p class="sub">A categoria detectada (tecnologia, moda, alimento, casa, pet, joias…) decide o preset e o estilo quando você deixa em "automático". O copy (título, tagline, 3 benefícios, CTA) vem do Ollama local — ou de um template se não houver LLM.</p>
+<div class="flow">
+<span>Pasta / URL</span><span class="arr">→</span>
+<span>Produtos + fotos</span><span class="arr">→</span>
+<span>Categoria + copy</span><span class="arr">→</span>
+<span>Recorte (rembg)</span><span class="arr">→</span>
+<span>Imagens por preset</span><span class="arr">→</span>
+<span>Cenas (zoompan + texto)</span><span class="arr">→</span>
+<span>xfade + música + voz</span><span class="arr">→</span>
+<span>MP4 16:9 + 9:16</span><span class="arr">→</span>
+<span>projeto.json</span>
+</div>
+<div class="grid g2" style="margin-top:26px">
+<div class="card"><h3>Presets de imagem</h3>
+<div class="tbl"><table><tr><th>preset</th><th>quando usar</th></tr>
+<tr><td>estudio-branco</td><td>e-commerce, cursos, livros</td></tr>
+<tr><td>dark-premium</td><td>tecnologia, joias, automotivo</td></tr>
+<tr><td>vibrante</td><td>esporte, infantil</td></tr>
+<tr><td>minimal</td><td>moda, beleza</td></tr>
+<tr><td>quente-vintage</td><td>alimentos e bebidas</td></tr>
+<tr><td>neon</td><td>games</td></tr>
+<tr><td>natural</td><td>casa, pet, eco</td></tr>
+<tr><td>original</td><td>só corrige luz/cor e enquadra</td></tr>
+<tr><td>cenario-ia</td><td>fundo fotográfico gerado (inemaimg / Agnes / API)</td></tr>
+</table></div></div>
+<div class="card"><h3>Estilos de vídeo</h3>
+<div class="tbl"><table><tr><th>estilo</th><th>ritmo</th></tr>
+<tr><td>dinamico</td><td>cortes de 2,2 s, punch zoom, slide</td></tr>
+<tr><td>elegante</td><td>3,6 s por cena, fades longos</td></tr>
+<tr><td>tech</td><td>grade azul/ciano, wipe, leve rgbashift</td></tr>
+<tr><td>natural</td><td>quente, suave, violão</td></tr>
+<tr><td>promo</td><td>preço em destaque, CTA forte</td></tr>
+<tr><td>cinematico</td><td>vinheta, contraste, trilha épica</td></tr>
+</table></div></div>
+</div>
 </div></section>
-
 <section id="pre"><div class="wrap">
-  <span class="chip">Pré-requisitos</span>
-  <h2>Só ferramentas livres, tudo na sua máquina</h2>
-  <p class="sub">Obrigatório: Node 20+ e ffmpeg. Recomendado: Python com rembg (recorte de fundo). Opcionais e desligáveis: Ollama (copy), inemavox (música/narração) e inemaimg ou uma API compatível (cenário por IA).</p>
-  <div class="grid g3">
-    <div class="card"><h3>Node + ffmpeg</h3><p>Servidor, composição (sharp) e render (h264_nvenc quando há GPU NVIDIA, senão libx264).</p><pre><span class="c"># checar</span>
-<span class="k">node</span> -v   <span class="c"># >= 20</span>
+<span class="chip">Pré-requisitos</span>
+<h2>Só ferramentas livres, tudo na sua máquina</h2>
+<p class="sub">Obrigatório: Node 20+ e ffmpeg. Recomendado: Python com rembg (recorte de fundo). Opcionais e desligáveis: Ollama (copy), inemavox (música/narração) e inemaimg ou uma API compatível (cenário por IA).</p>
+<div class="grid g3">
+<div class="card"><h3>Node + ffmpeg</h3><p>Servidor, composição (sharp) e render (h264_nvenc quando há GPU NVIDIA, senão libx264).</p><pre><span class="c"># checar</span>
+<span class="k">node</span> -v   <span class="c"># &gt;= 20</span>
 <span class="k">ffmpeg</span> -version | head -1</pre></div>
-    <div class="card"><h3>rembg (recomendado)</h3><p>Remoção de fundo local com modelos ONNX. Sem ele o produto entra sem recorte.</p><pre><span class="k">python3</span> -m venv .venv
+<div class="card"><h3>rembg (recomendado)</h3><p>Remoção de fundo local com modelos ONNX. Sem ele o produto entra sem recorte.</p><pre><span class="k">python3</span> -m venv .venv
 .venv/bin/pip install rembg onnxruntime pillow numpy</pre></div>
-    <div class="card"><h3>Serviços opcionais</h3><p>Se estiverem no ar, o app usa; se não, cai no fallback local sem quebrar.</p><pre><span class="k">curl</span> localhost:11434/api/tags     <span class="c"># Ollama → copy</span>
+<div class="card"><h3>Serviços opcionais</h3><p>Se estiverem no ar, o app usa; se não, cai no fallback local sem quebrar.</p><pre><span class="k">curl</span> localhost:11434/api/tags     <span class="c"># Ollama → copy</span>
 <span class="k">curl</span> localhost:8010/api/system/status <span class="c"># inemavox → música/voz</span>
 <span class="k">curl</span> localhost:8000/health         <span class="c"># inemaimg → cenário IA</span></pre></div>
-  </div>
+</div>
 </div></section>
-
 <section id="guia"><div class="wrap">
-  <span class="chip">Guia de uso · passo a passo</span>
-  <h2>Do clone ao primeiro vídeo</h2>
-  <p class="sub">Cinco passos. O terceiro é o único que você vai repetir.</p>
-
-  <div class="step"><div class="b">1</div><div>
-    <h3>Instalar e subir</h3>
-    <p>Clona, instala as dependências Node e abre a página web na porta 3080.</p>
-<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/videoprodutos</span> && <span class="k">cd</span> videoprodutos
+<span class="chip">Guia de uso · passo a passo</span>
+<h2>Do clone ao primeiro vídeo</h2>
+<p class="sub">Cinco passos. O terceiro é o único que você vai repetir.</p>
+<div class="step"><div class="b">1</div><div>
+<h3>Instalar e subir</h3>
+<p>Clona, instala as dependências Node e abre a página web na porta 3080.</p>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/videoprodutos</span> &amp;&amp; <span class="k">cd</span> videoprodutos
 <span class="k">npm install</span>
 <span class="k">npm start</span>        <span class="c"># → http://localhost:3080</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">2</div><div>
-    <h3>Organizar a pasta (ou pegar o link)</h3>
-    <p>Subpasta por produto com as fotos e um <code>produto.json</code> ou <code>produto.md</code> opcional (nome, preço, descrição, categoria). Fotos soltas na raiz viram um produto cada. Ou simplesmente use a URL da loja.</p>
+</div></div>
+<div class="step"><div class="b">2</div><div>
+<h3>Organizar a pasta (ou pegar o link)</h3>
+<p>Subpasta por produto com as fotos e um <code>produto.json</code> ou <code>produto.md</code> opcional (nome, preço, descrição, categoria). Fotos soltas na raiz viram um produto cada. Ou simplesmente use a URL da loja.</p>
 <pre>produtos/
   fone-x1/               <span class="c">← um produto, várias fotos</span>
     1.jpg 2.jpg
@@ -224,39 +217,35 @@
     foto.png
     produto.md           <span class="c">← 1ª linha = nome, resto = descrição</span>
   camiseta.jpg           <span class="c">← foto solta = um produto</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">3</div><div>
-    <h3>Adicionar à fila</h3>
-    <p>Na aba <b>Nova tarefa</b>: cole a pasta (ou use "Procurar") ou a URL, escolha preset e estilo (ou deixe "Automático"), marque 16:9 e/ou 9:16 e clique em <b>Adicionar à fila</b>. A aba <b>Fila</b> mostra o progresso e o log ao vivo. Pela CLI é a mesma coisa:</p>
+</div></div>
+<div class="step"><div class="b">3</div><div>
+<h3>Adicionar à fila</h3>
+<p>Na aba <b>Nova tarefa</b>: cole a pasta (ou use "Procurar") ou a URL, escolha preset e estilo (ou deixe "Automático"), marque 16:9 e/ou 9:16 e clique em <b>Adicionar à fila</b>. A aba <b>Fila</b> mostra o progresso e o log ao vivo. Pela CLI é a mesma coisa:</p>
 <pre><span class="k">node cli.js</span> ~/produtos --preset dark-premium --estilo tech --marca <span class="s">"MINHA LOJA"</span>
 <span class="k">node cli.js</span> <span class="s">https://loja.com.br</span> --max 5 --formato 9:16
 <span class="k">node cli.js</span> ~/produtos/cafes                       <span class="c"># tudo automático</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">4</div><div>
-    <h3>Enfileirar um lote</h3>
-    <p>Na aba <b>Nova tarefa → Lote</b> (ou <code>--lote lista.txt</code>): uma fonte por linha, campos opcionais separados por <code>|</code>. A fila processa em série e sobrevive a reinício do servidor.</p>
+</div></div>
+<div class="step"><div class="b">4</div><div>
+<h3>Enfileirar um lote</h3>
+<p>Na aba <b>Nova tarefa → Lote</b> (ou <code>--lote lista.txt</code>): uma fonte por linha, campos opcionais separados por <code>|</code>. A fila processa em série e sobrevive a reinício do servidor.</p>
 <pre><span class="c"># fonte | preset | estilo | formato | max=N | marca=Nome | sem-video</span>
 ~/produtos/cafes | quente-vintage | natural
 <span class="s">https://minhaloja.com.br</span> | auto | promo | 9:16 | max=5
 ~/produtos/fones | dark-premium | tech | ambos | marca=SOUNDX
 ~/produtos/camisetas | minimal | | | sem-video   <span class="c"># só imagens</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">5</div><div>
-    <h3>Pegar o resultado</h3>
-    <p>Aba <b>Projetos</b>: player dos vídeos, todas as imagens por preset e os originais, com download. Em disco fica tudo em uma pasta autocontida:</p>
+</div></div>
+<div class="step"><div class="b">5</div><div>
+<h3>Pegar o resultado</h3>
+<p>Aba <b>Projetos</b>: player dos vídeos, todas as imagens por preset e os originais, com download. Em disco fica tudo em uma pasta autocontida:</p>
 <pre>~/projetos/output/videoprodutos/&lt;id&gt;/
   projeto.json           <span class="c">← manifesto: produtos, copy, categoria, preset, estilo, arquivos</span>
   originais/             <span class="c">← fotos de entrada</span>
   imagens/&lt;preset&gt;/      <span class="c">← 1:1, 16:9, 9:16 · limpa e com texto</span>
   videos/                <span class="c">← &lt;produto&gt;-&lt;estilo&gt;-16x9.mp4, -9x16.mp4, _catalogo-*.mp4</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">+</div><div>
-    <h3>Configurar LLM / imagem por IA (opcional)</h3>
-    <p>Aba <b>Configurações</b> (grava no <code>.env</code>) ou edite o arquivo. Cada provedor pode ser <code>none</code>; o app continua funcionando com templates e presets locais.</p>
+</div></div>
+<div class="step"><div class="b">+</div><div>
+<h3>Configurar LLM / imagem por IA (opcional)</h3>
+<p>Aba <b>Configurações</b> (grava no <code>.env</code>) ou edite o arquivo. Cada provedor pode ser <code>none</code>; o app continua funcionando com templates e presets locais.</p>
 <pre><span class="k">LLM_PROVIDER</span>=ollama          <span class="c"># none | ollama | openai (qualquer API compatível: Groq, OpenRouter…)</span>
 <span class="k">OLLAMA_MODEL</span>=qwen3.8:27b
 <span class="k">IMG_PROVIDER</span>=inemaimg        <span class="c"># none | inemaimg (flux2-klein local) | agnes (US$ 0) | openai</span>
@@ -264,50 +253,45 @@
 <span class="k">MUSIC</span>=freesound              <span class="c"># none | freesound | freesound-api | synth</span>
 <span class="k">VIDEO_ENGINE</span>=ffmpeg           <span class="c"># ffmpeg (local) | agnes (clipes de câmera por IA, US$ 0) | kie (reservado)</span>
 <span class="k">APP_PASSWORD</span>=                 <span class="c"># senha HTTP Basic — obrigatória numa VPS</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">☁</div><div>
-    <h3>Rodar numa VPS sem GPU</h3>
-    <p>Perfil pronto em <code>deploy/</code>: Agnes para copy, cenário e vídeo, edge-tts para a voz, rembg em CPU, libx264 no render, senha na frente. Testado em 2 vCPU / 4 GB.</p>
+</div></div>
+<div class="step"><div class="b">☁</div><div>
+<h3>Rodar numa VPS sem GPU</h3>
+<p>Perfil pronto em <code>deploy/</code>: Agnes para copy, cenário e vídeo, edge-tts para a voz, rembg em CPU, libx264 no render, senha na frente. Testado em 2 vCPU / 4 GB.</p>
 <pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/videoprodutos</span> /root/projetos/videoprodutos
-<span class="k">cd</span> /root/projetos/videoprodutos && <span class="k">bash</span> deploy/deploy.sh   <span class="c"># deps, venv, fontes, systemd</span>
+<span class="k">cd</span> /root/projetos/videoprodutos &amp;&amp; <span class="k">bash</span> deploy/deploy.sh   <span class="c"># deps, venv, fontes, systemd</span>
 <span class="k">nano</span> .env        <span class="c"># AGNES_API_KEY e APP_PASSWORD (modelo em deploy/env.vps.example)</span>
 <span class="k">systemctl restart</span> videoprodutos                    <span class="c"># → http://IP:3080</span></pre>
-  </div></div>
+</div></div>
 </div></section>
-
 <section id="exemplos"><div class="wrap">
-  <span class="chip">Exemplos</span>
-  <h2>Gerado no primeiro teste, sem retoque</h2>
-  <p class="sub">Duas fotos de produto numa pasta, tudo em automático: o cachorro caiu em "pet" (preset natural, estilo natural) e a caixa de som em "tecnologia" (dark premium, estilo tech). Copy pelo Ollama local, recorte pelo rembg, narração Edge TTS.</p>
-  <div class="ex">
-    <figure><img src="assets/ex1.jpg" alt="Imagem 1:1 gerada no preset dark premium com título e preço"><figcaption>Imagem 1:1 "post" — preset dark-premium, título e tagline escritos pelo LLM, recorte automático.</figcaption></figure>
-    <figure><img src="assets/ex2.jpg" alt="Frame do vídeo 16:9 no estilo tech com benefício em destaque"><figcaption>Frame do vídeo 16:9 — cena de benefício, grade de cor "tech", overlay renderizado de SVG.</figcaption></figure>
-    <figure><img src="assets/ex3.jpg" alt="Frame do vídeo 9:16 com CTA e preço"><figcaption>Vídeo 9:16 — cena final com CTA e assinatura da marca (o preço entra como selo quando o produto tem preço).</figcaption></figure>
-    <figure><img src="assets/ex4.jpg" alt="Página web do videoprodutos com a fila de produção"><figcaption>A página web: nova tarefa, lote, fila com log ao vivo, projetos e configurações.</figcaption></figure>
-  </div>
+<span class="chip">Exemplos</span>
+<h2>Gerado no primeiro teste, sem retoque</h2>
+<p class="sub">Duas fotos de produto numa pasta, tudo em automático: o cachorro caiu em "pet" (preset natural, estilo natural) e a caixa de som em "tecnologia" (dark premium, estilo tech). Copy pelo Ollama local, recorte pelo rembg, narração Edge TTS.</p>
+<div class="ex">
+<figure><img alt="Imagem 1:1 gerada no preset dark premium com título e preço" src="assets/ex1.jpg"/><figcaption>Imagem 1:1 "post" — preset dark-premium, título e tagline escritos pelo LLM, recorte automático.</figcaption></figure>
+<figure><img alt="Frame do vídeo 16:9 no estilo tech com benefício em destaque" src="assets/ex2.jpg"/><figcaption>Frame do vídeo 16:9 — cena de benefício, grade de cor "tech", overlay renderizado de SVG.</figcaption></figure>
+<figure><img alt="Frame do vídeo 9:16 com CTA e preço" src="assets/ex3.jpg"/><figcaption>Vídeo 9:16 — cena final com CTA e assinatura da marca (o preço entra como selo quando o produto tem preço).</figcaption></figure>
+<figure><img alt="Página web do videoprodutos com a fila de produção" src="assets/ex4.jpg"/><figcaption>A página web: nova tarefa, lote, fila com log ao vivo, projetos e configurações.</figcaption></figure>
+</div>
 </div></section>
-
 <section id="roadmap"><div class="wrap">
-  <span class="chip">Roadmap</span>
-  <h2>Onde isso vai</h2>
-  <p class="sub">O núcleo (descoberta → imagens → vídeo → fila) está pronto. O que falta é refinamento e integração.</p>
-  <div class="phase"><div class="tag">v1.0</div><div class="d"><strong>Núcleo local</strong><span>Pasta/URL, 9 presets, 6 estilos, automático por categoria, fila persistente, página web, CLI, configuração de LLM/imagem opcional.</span></div></div>
-  <div class="phase"><div class="tag">v1.1</div><div class="d"><strong>Motor de vídeo por IA + VPS</strong><span>Clipes de câmera pela Agnes (plugável: kie e outros em <code>lib/videoai.js</code>), perfil de deploy sem GPU com senha, edge-tts e Freesound diretos.</span></div></div>
-  <div class="phase"><div class="tag">v1.2</div><div class="d"><strong>Edição de copy antes do render</strong><span>Revisar título, benefícios e preço na fila antes de gerar o vídeo; re-render só do vídeo.</span></div></div>
-  <div class="phase"><div class="tag">v1.3</div><div class="d"><strong>Legendas e locução clonada</strong><span>Legendas queimadas sincronizadas com a narração; voz clonada (chatterbox/rachel) como opção padrão quando a GPU estiver livre.</span></div></div>
-  <div class="phase"><div class="tag">v2</div><div class="d"><strong>Export HyperFrames e publicação</strong><span>Composição HTML editável para quem quer mexer no motion, e envio direto para Metricool/agenda de posts.</span></div></div>
+<span class="chip">Roadmap</span>
+<h2>Onde isso vai</h2>
+<p class="sub">O núcleo (descoberta → imagens → vídeo → fila) está pronto. O que falta é refinamento e integração.</p>
+<div class="phase"><div class="tag">v1.0</div><div class="d"><strong>Núcleo local</strong><span>Pasta/URL, 9 presets, 6 estilos, automático por categoria, fila persistente, página web, CLI, configuração de LLM/imagem opcional.</span></div></div>
+<div class="phase"><div class="tag">v1.1</div><div class="d"><strong>Motor de vídeo por IA + VPS</strong><span>Clipes de câmera pela Agnes (plugável: kie e outros em <code>lib/videoai.js</code>), perfil de deploy sem GPU com senha, edge-tts e Freesound diretos.</span></div></div>
+<div class="phase"><div class="tag">v1.2</div><div class="d"><strong>Edição de copy antes do render</strong><span>Revisar título, benefícios e preço na fila antes de gerar o vídeo; re-render só do vídeo.</span></div></div>
+<div class="phase"><div class="tag">v1.3</div><div class="d"><strong>Legendas e locução clonada</strong><span>Legendas queimadas sincronizadas com a narração; voz clonada (chatterbox/rachel) como opção padrão quando a GPU estiver livre.</span></div></div>
+<div class="phase"><div class="tag">v2</div><div class="d"><strong>Export HyperFrames e publicação</strong><span>Composição HTML editável para quem quer mexer no motion, e envio direto para Metricool/agenda de posts.</span></div></div>
 </div></section>
-
 <footer>
-  <div class="wrap">
-    <div class="pill">Node + Express</div><div class="pill">sharp</div><div class="pill">ffmpeg</div><div class="pill">rembg</div><div class="pill">Ollama (opcional)</div>
-    <p style="margin-top:18px">videoprodutos · projeto de pesquisa/educação INEMA ·
+<div class="wrap">
+<div class="pill">Node + Express</div><div class="pill">sharp</div><div class="pill">ffmpeg</div><div class="pill">rembg</div><div class="pill">Ollama (opcional)</div>
+<p style="margin-top:18px">videoprodutos · projeto de pesquisa/educação INEMA ·
       <a href="https://github.com/inematds/videoprodutos">inematds/videoprodutos</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>
-  </div>
+</div>
 </footer>
-
 <script>
   (function(){
     var KEY='videoprodutos-theme';

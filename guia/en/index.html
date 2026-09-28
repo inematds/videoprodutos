@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>videoprodutos — turn a folder or link into images and a promotional video</title>
+<meta content="videoprodutos: finds products in a folder or store link, generates images using style presets and an automatic promotional video (16:9 and 9:16), with a production queue and web page. 100% local, no paid API." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;display:block}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px 1fr;gap:16px;margin-bottom:26px}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  table{width:100%;border-collapse:collapse;font-size:.9rem}
+  th,td{text-align:left;padding:.55em .7em;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--amb);font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+  td:first-child{font-family:"JetBrains Mono",monospace;font-size:.84rem;white-space:nowrap}
+  .tbl{overflow-x:auto}
+</style>
+<link href="https://inematds.github.io/videoprodutos/guia/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/videoprodutos/guia/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/videoprodutos/guia/es/" hreflang="es" rel="alternate"/></head>
+<body><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="./" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../es/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<nav><div class="wrap">
+<a class="brand" href="#top"><span class="emoji">🎬</span> videoprodutos</a>
+<span class="sep">|</span>
+<span class="clubpro">
+<a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a>
+<span class="sep">-</span>
+<a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a>
+</span>
+<div class="links">
+<a class="sec" href="#oque">What It Is</a>
+<a class="sec" href="#fluxo">How it works</a>
+<a class="sec" href="#guia">User Guide</a>
+<a class="sec" href="#exemplos">Examples</a>
+<a class="sec" href="#roadmap">Roadmap</a>
+<button aria-label="Toggle theme" class="tgl" id="themeToggle" title="Toggle theme">🌙</button>
+<a class="btn" href="https://github.com/inematds/videoprodutos" rel="noopener" target="_blank">GitHub</a>
+</div>
+</div></nav>
+<header class="hero" id="top">
+<div class="glow"></div>
+<div class="wrap">
+<div>
+<span class="chip">Product image + video factory · 100% local</span>
+<h1>A folder or a link becomes a <span class="amb">images and video</span> promotional</h1>
+<p class="lead">Point to the photo folder or store URL. Videoprodutos finds the products, removes the backgrounds, applies the style preset (or picks one automatically based on the product type), and renders the video in 16:9 and 9:16—in a queue, through the web page. No paid API, no credits.</p>
+<div class="cta">
+<a class="btn" href="#guia">Start the guide</a>
+<a class="btn ghost" href="https://github.com/inematds/videoprodutos" rel="noopener" target="_blank">View on GitHub</a>
+</div>
+</div>
+<figure><img alt="Illustration of products being transformed into stylized images and video" src="../assets/hero.jpg"/></figure>
+</div>
+</header>
+<section id="oque"><div class="wrap">
+<span class="chip">What It Is</span>
+<h2>From raw product to finished ad, in batches</h2>
+<p class="sub">A Node server with a web page and persistent queue. Each task (folder or link) becomes a project saved to disk with originals, images for each preset in three aspect ratios, and videos ready for YouTube and Reels.</p>
+<div class="grid g3">
+<div class="card"><h3>🔎 Finds the products automatically</h3><p>Folder (subfolder = product, or loose photos) or URL: Shopify, WooCommerce, JSON-LD, OpenGraph, and, as a last resort, the page’s large images. Retrieves the name, description, and price when available.</p></div>
+<div class="card"><h3>🎨 9 image presets + automatic</h3><p>White studio, premium dark, vibrant, minimal, warm/vintage, neon, natural, original, and AI-generated setting. Background removal with local rembg; 1:1, 16:9, and 9:16 output, clean and with title/price.</p></div>
+<div class="card"><h3>🎬 6 video styles + automatic</h3><p>Dynamic, elegant, tech, natural, promotional, and cinematic: zoom/pan, transitions, color grading, CC0 music (Freesound via inemavox) or a synthetic track, optional narration, and a catalog with all products.</p></div>
+</div>
+</div></section>
+<section id="fluxo"><div class="wrap">
+<span class="chip">How it works</span>
+<h2>Product Assembly Line</h2>
+<p class="sub">The detected category (technology, fashion, food, home, pets, jewelry…) determines the preset and style when you leave it on "automatic." The copy (title, tagline, 3 benefits, CTA) comes from local Ollama—or from a template if there’s no LLM.</p>
+<div class="flow">
+<span>Folder / URL</span><span class="arr">→</span>
+<span>Products + Photos</span><span class="arr">→</span>
+<span>Category + copy</span><span class="arr">→</span>
+<span>Background Removal (rembg)</span><span class="arr">→</span>
+<span>Preset Images</span><span class="arr">→</span>
+<span>Scenes (zoompan + text)</span><span class="arr">→</span>
+<span>xfade + music + voice</span><span class="arr">→</span>
+<span>MP4 16:9 + 9:16</span><span class="arr">→</span>
+<span>projeto.json</span>
+</div>
+<div class="grid g2" style="margin-top:26px">
+<div class="card"><h3>Image Presets</h3>
+<div class="tbl"><table><tr><th>preset</th><th>when to use</th></tr>
+<tr><td>estudio-branco</td><td>e-commerce, courses, books</td></tr>
+<tr><td>dark-premium</td><td>technology, jewelry, automotive</td></tr>
+<tr><td>vibrant</td><td>sports, kids</td></tr>
+<tr><td>minimal</td><td>fashion, beauty</td></tr>
+<tr><td>quente-vintage</td><td>food and beverages</td></tr>
+<tr><td>neon</td><td>games</td></tr>
+<tr><td>natural</td><td>home, pets, eco</td></tr>
+<tr><td>original</td><td>just correct the lighting/color and frame it</td></tr>
+<tr><td>cenario-ia</td><td>generated photographic background (inemaimg / Agnes / API)</td></tr>
+</table></div></div>
+<div class="card"><h3>Video Styles</h3>
+<div class="tbl"><table><tr><th>style</th><th>rhythm</th></tr>
+<tr><td>dynamic</td><td>2.2 s cuts, punch zoom, slide</td></tr>
+<tr><td>elegant</td><td>3.6 s per scene, long fades</td></tr>
+<tr><td>tech</td><td>blue/cyan color grade, wipe, subtle rgbashift</td></tr>
+<tr><td>natural</td><td>warm, soft, acoustic guitar</td></tr>
+<tr><td>promo</td><td>featured price, strong CTA</td></tr>
+<tr><td>cinematico</td><td>stinger, contrast, epic soundtrack</td></tr>
+</table></div></div>
+</div>
+</div></section>
+<section id="pre"><div class="wrap">
+<span class="chip">Prerequisites</span>
+<h2>Free tools only, all on your machine</h2>
+<p class="sub">Required: Node 20+ and ffmpeg. Recommended: Python with rembg (background removal). Optional and can be turned off: Ollama (copy), inemavox (music/voiceover), and inemaimg or a compatible API (AI-generated setting).</p>
+<div class="grid g3">
+<div class="card"><h3>Node + ffmpeg</h3><p>Server, composition (sharp), and rendering (h264_nvenc when an NVIDIA GPU is available, otherwise libx264).</p><pre><span class="c"># check</span>
+<span class="k">node</span> -v   <span class="c"># &gt;= 20</span>
+<span class="k">ffmpeg</span> -version | head -1</pre></div>
+<div class="card"><h3>rembg (recommended)</h3><p>Local background removal with ONNX models. Without it, the product is added without background removal.</p><pre><span class="k">python3</span> -m venv .venv
+.venv/bin/pip install rembg onnxruntime pillow numpy</pre></div>
+<div class="card"><h3>Optional services</h3><p>If they’re online, the app uses them; otherwise, it falls back to local mode without breaking.</p><pre><span class="k">curl</span> localhost:11434/api/tags     <span class="c"># Ollama → copy</span>
+<span class="k">curl</span> localhost:8010/api/system/status <span class="c"># inemavox → music/voice</span>
+<span class="k">curl</span> localhost:8000/health         <span class="c"># inemaimg → AI setting</span></pre></div>
+</div>
+</div></section>
+<section id="guia"><div class="wrap">
+<span class="chip">User Guide · Step by Step</span>
+<h2>From clone to first video</h2>
+<p class="sub">Five steps. The third is the only one you’ll repeat.</p>
+<div class="step"><div class="b">1</div><div>
+<h3>Install and Run</h3>
+<p>Clones the repository, installs the Node dependencies, and opens the web page on port 3080.</p>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/videoprodutos</span> &amp;&amp; <span class="k">cd</span> videoprodutos
+<span class="k">npm install</span>
+<span class="k">npm start</span>        <span class="c"># → http://localhost:3080</span></pre>
+</div></div>
+<div class="step"><div class="b">2</div><div>
+<h3>Organize the folder (or get the link)</h3>
+<p>Subfolder for each product with the photos and a <code>produto.json</code> or <code>produto.md</code> optional (name, price, description, category). Loose photos in the root folder each become a product. Or simply use the store URL.</p>
+<pre>produtos/
+  fone-x1/               <span class="c">← one product, multiple photos</span>
+    1.jpg 2.jpg
+    produto.json         <span class="c">← {"name":"Fone X1","price":"R$ 199","desc":"…","category":"tecnologia"}</span>
+  caneca-azul/
+    foto.png
+    produto.md           <span class="c">← 1st line = name, rest = description</span>
+  camiseta.jpg           <span class="c">← a standalone photo = one product</span></pre>
+</div></div>
+<div class="step"><div class="b">3</div><div>
+<h3>Add to queue</h3>
+<p>In the tab <b>New Task</b>: paste the folder (or use "Browse") or the URL, choose a preset and style (or leave it on "Automatic"), select 16:9 and/or 9:16, and click <b>Add to queue</b>. The tab <b>Queue</b> shows progress and the live log. From the CLI, it works the same way:</p>
+<pre><span class="k">node cli.js</span> ~/produtos --preset dark-premium --estilo tech --marca <span class="s">"MINHA LOJA"</span>
+<span class="k">node cli.js</span> <span class="s">https://loja.com.br</span> --max 5 --formato 9:16
+<span class="k">node cli.js</span> ~/produtos/cafes                       <span class="c"># fully automatic</span></pre>
+</div></div>
+<div class="step"><div class="b">4</div><div>
+<h3>Queue a batch</h3>
+<p>In the tab <b>New Task → Batch</b> (or <code>--lote lista.txt</code>): one source per line, optional fields separated by <code>|</code>. The queue processes jobs in sequence and survives server restarts.</p>
+<pre><span class="c"># source | preset | style | format | max=N | brand=Name | no-video</span>
+~/produtos/cafes | quente-vintage | natural
+<span class="s">https://minhaloja.com.br</span> | auto | promo | 9:16 | max=5
+~/produtos/fones | dark-premium | tech | ambos | marca=SOUNDX
+~/produtos/camisetas | minimal | | | sem-video   <span class="c"># images only</span></pre>
+</div></div>
+<div class="step"><div class="b">5</div><div>
+<h3>Get the Result</h3>
+<p>Tab <b>Projects</b>: video players, all preset images and the originals, with downloads. Everything is stored in a self-contained folder on disk:</p>
+<pre>~/projetos/output/videoprodutos/&lt;id&gt;/
+  projeto.json           <span class="c">← manifest: products, copy, category, preset, style, files</span>
+  originais/             <span class="c">← input photos</span>
+  imagens/&lt;preset&gt;/      <span class="c">← 1:1, 16:9, 9:16 · clean and with text</span>
+  videos/                <span class="c">← &lt;produto&gt;-&lt;estilo&gt;-16x9.mp4, -9x16.mp4, _catalogo-*.mp4</span></pre>
+</div></div>
+<div class="step"><div class="b">+</div><div>
+<h3>Configure LLM / AI images (optional)</h3>
+<p>Tab <b>Settings</b> (writes to <code>.env</code>) or edit the file. Each provider can be <code>none</code>; the app keeps working with local templates and presets.</p>
+<pre><span class="k">LLM_PROVIDER</span>=ollama          <span class="c"># none | ollama | openai (any compatible API: Groq, OpenRouter…)</span>
+<span class="k">OLLAMA_MODEL</span>=qwen3.8:27b
+<span class="k">IMG_PROVIDER</span>=inemaimg        <span class="c"># none | inemaimg (flux2-klein local) | agnes (US$ 0) | openai</span>
+<span class="k">TTS_ENGINE</span>=edge              <span class="c"># none | edge | chatterbox   (via inemavox)</span>
+<span class="k">MUSIC</span>=freesound              <span class="c"># none | freesound | freesound-api | synth</span>
+<span class="k">VIDEO_ENGINE</span>=ffmpeg           <span class="c"># ffmpeg (local) | agnes (AI camera clips, US$ 0) | kie (reserved)</span>
+<span class="k">APP_PASSWORD</span>=                 <span class="c"># HTTP Basic password — required on a VPS</span></pre>
+</div></div>
+<div class="step"><div class="b">☁</div><div>
+<h3>Run on a VPS without a GPU</h3>
+<p>Profile ready at <code>deploy/</code>: Agnes for copy, setting, and video; edge-tts for voice; rembg on CPU; libx264 for rendering; password protection. Tested on 2 vCPU / 4 GB.</p>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/videoprodutos</span> /root/projetos/videoprodutos
+<span class="k">cd</span> /root/projetos/videoprodutos &amp;&amp; <span class="k">bash</span> deploy/deploy.sh   <span class="c"># deps, venv, fonts, systemd</span>
+<span class="k">nano</span> .env        <span class="c"># AGNES_API_KEY and APP_PASSWORD (template in deploy/env.vps.example)</span>
+<span class="k">systemctl restart</span> videoprodutos                    <span class="c"># → http://IP:3080</span></pre>
+</div></div>
+</div></section>
+<section id="exemplos"><div class="wrap">
+<span class="chip">Examples</span>
+<h2>Generated in the first test, with no retouching</h2>
+<p class="sub">Two product photos in a folder, everything automated: the dog landed in "pet" (natural preset, natural style) and the speaker in "technology" (dark premium, tech style). Copy via local Ollama, background removal via rembg, narration via Edge TTS.</p>
+<div class="ex">
+<figure><img alt="1:1 image generated with the premium dark preset, title, and price" src="../assets/ex1.jpg"/><figcaption>1:1 “post” image — dark-premium preset, title and tagline written by the LLM, automatic background removal.</figcaption></figure>
+<figure><img alt="16:9 tech-style video frame with the benefit highlighted" src="../assets/ex2.jpg"/><figcaption>16:9 video frame — benefit scene, “tech” color grade, rendered SVG overlay.</figcaption></figure>
+<figure><img alt="9:16 video frame with CTA and price" src="../assets/ex3.jpg"/><figcaption>9:16 video — final scene with a CTA and brand signature (the price appears as a badge when the product has a price).</figcaption></figure>
+<figure><img alt="Videoprodutos web page with the production queue" src="../assets/ex4.jpg"/><figcaption>The web page: new task, batch, queue with live log, projects, and settings.</figcaption></figure>
+</div>
+</div></section>
+<section id="roadmap"><div class="wrap">
+<span class="chip">Roadmap</span>
+<h2>Where It Goes</h2>
+<p class="sub">The core (discovery → images → video → queue) is ready. What remains is refinement and integration.</p>
+<div class="phase"><div class="tag">v1.0</div><div class="d"><strong>Local Core</strong><span>Folder/URL, 9 presets, 6 styles, automatic by category, persistent queue, web page, CLI, optional LLM/image configuration.</span></div></div>
+<div class="phase"><div class="tag">v1.1</div><div class="d"><strong>AI Video Engine + VPS</strong><span>Camera clips through Agnes (pluggable: kie and others in <code>lib/videoai.js</code>), a deploy profile without a GPU, with a password, edge-tts, and direct Freesound access.</span></div></div>
+<div class="phase"><div class="tag">v1.2</div><div class="d"><strong>Edit the copy before rendering</strong><span>Review the title, benefits, and price in the queue before generating the video; re-render only the video.</span></div></div>
+<div class="phase"><div class="tag">v1.3</div><div class="d"><strong>Captions and Cloned Voiceover</strong><span>Burned-in captions synced with the narration; cloned voice (chatterbox/rachel) as the default option when the GPU is available.</span></div></div>
+<div class="phase"><div class="tag">v2</div><div class="d"><strong>HyperFrames Export and Publishing</strong><span>Editable HTML composition for anyone who wants to adjust the motion, plus direct sending to Metricool/post scheduler.</span></div></div>
+</div></section>
+<footer>
+<div class="wrap">
+<div class="pill">Node + Express</div><div class="pill">sharp</div><div class="pill">ffmpeg</div><div class="pill">rembg</div><div class="pill">Ollama (optional)</div>
+<p style="margin-top:18px">videoprodutos · INEMA research/education project ·
+      <a href="https://github.com/inematds/videoprodutos">inematds/videoprodutos</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+  (function(){
+    var KEY='videoprodutos-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
